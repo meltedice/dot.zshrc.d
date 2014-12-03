@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8; mode: shell-script -*-
 
 # TIPS
 # C-r 履歴検索
@@ -481,3 +481,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 enable-rvm() {
     PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 }
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

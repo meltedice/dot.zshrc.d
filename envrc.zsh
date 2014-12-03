@@ -33,4 +33,3 @@ export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 # http://xoyip.hatenablog.com/entry/2014/04/24/200613
 export BUNDLER_EDITOR=~/bin/bundler.sh
-
