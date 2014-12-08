@@ -1,6 +1,6 @@
 # -*- coding: utf-8; mode: shell-script -*-
 
-# bash/zsh などで共通で使用する環境変数
+# Common environment variables for bash/zsh 
 #
 # bash:
 #   [[ -f $HOME/.envrc ]] && . $HOME/.envrc
@@ -29,7 +29,14 @@ export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 
 # export PYTHONPATH=/usr/lib/python2.6/:/usr/lib/python2.6/site-packages/:/Library/Python/2.6/site-packages/:~/.emacs.d/plugins/pymacs/:~/.emacs.d/plugins/pymacs-ext
 
-export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+if [ -f /usr/local/opt/curl-ca-bundle/share/ca-bundle.crt ]; then
+  export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+fi
 
 # http://xoyip.hatenablog.com/entry/2014/04/24/200613
-export BUNDLER_EDITOR=~/bin/bundler.sh
+[[ -f $HOME/bin/bundler.sh ]] && export BUNDLER_EDITOR=~/bin/bundler.sh
+
+# Cask
+[[ -d $HOME/.cask ]] && export PATH="$HOME/.cask/bin:$PATH"
+
+
