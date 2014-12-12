@@ -22,8 +22,9 @@ export SVN_EDITOR="emacs -nw"
 export GIT_EDITOR="emacs -nw"
 export GIT_PAGER='less -FRSX'
 
-# brew
+# Homebrew
 export PATH=/usr/local/sbin:/usr/local/bin:$PATH
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # export PATH=$PATH:$HOME/bin
 
