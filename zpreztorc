@@ -1,3 +1,4 @@
+# -*- coding: utf-8; mode: shell-script -*-
 #
 # Sets Prezto options.
 #
@@ -155,3 +156,48 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 
 # Integrate with iTerm2.
 # zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+
+
+
+
+#### Temporarily added
+
+# http://www.ayu.ics.keio.ac.jp/~mukai/tips/zshmerit.html
+# コマンド行の最初にスペースを入れると履歴に残さない
+setopt HIST_IGNORE_SPACE 
+
+# http://0xcc.net/unimag/3/
+# 各ターミナルと履歴を共有
+setopt share_history
+
+## history
+#HISTFILE=~/.histfile
+HISTFILE=~/.zshrc.d/histfile
+# HISTSIZE=8000
+# SAVEHIST=8000
+HISTSIZE=200000
+SAVEHIST=200000
+
+# exists?
+function exists {
+    if which "$1" 1>/dev/null 2>&1; then return 0; else return 1; fi
+}
+
+# Load environemnt variables
+[[ -f $HOME/.zshrc.d/envrc.zsh ]] && source $HOME/.zshrc.d/envrc.zsh
+
+alias du="du -h"
+alias df="df -h"
+alias su="su -l"
+alias la='ls -hA'
+alias lf="ls -F"
+alias ll='ls -hl'
+alias lla='ls -hlA'
+## clipboard (requires xsel which can be installed by "sudo aptitude install xsel")
+# http://nanabit.net/softwares/shell-script/zshrc
+if exists xsel; then
+    alias -g   B=" | xsel -bi" # stdout => clip
+    alias -g  B2=" 2>&1 | xsel -bi" # stdout + stderr => clip
+    alias -g  BB=" | (cat 1>&2 | xsel -bi) 2>&1" # stdout => clip and stdout
+    alias -g BB2=" 2>&1 | (cat 1>&2 | xsel -bi) 2>&1" # stdout, stderr => clip and stdout
+fi
