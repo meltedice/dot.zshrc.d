@@ -171,10 +171,7 @@ setopt HIST_IGNORE_SPACE
 setopt share_history
 
 ## history
-#HISTFILE=~/.histfile
 HISTFILE=~/.zshrc.d/histfile
-# HISTSIZE=8000
-# SAVEHIST=8000
 HISTSIZE=200000
 SAVEHIST=200000
 
@@ -182,6 +179,36 @@ SAVEHIST=200000
 function exists {
     if which "$1" 1>/dev/null 2>&1; then return 0; else return 1; fi
 }
+
+# --color=auto doesn't work on Mac OS X
+COLOR_OPTION=""
+case "${OSTYPE}" in
+    freebsd*|darwin*)
+        alias ls="ls -F -G -w"
+        alias emacs-nw="emacs -nw"
+        COLOR_OPTION=""
+        ;;
+    linux*)
+        alias ls="ls -F --color"
+        alias emacs-nw="env TERM=xterm-256color emacs -nw"
+        COLOR_OPTION="--color=auto"
+        ;;
+esac
+
+alias grep="grep $COLOR_OPTION"
+alias fgrep="fgrep $COLOR_OPTION"
+alias egrep="egrep $COLOR_OPTION"
+
+# http://www.ayu.ics.keio.ac.jp/~mukai/tips/zshmerit.html
+# ESC-q : command line stack
+alias -g L='| less'
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+alias -g W='| wc'
+alias -g S='| sed'
+alias -g A='| awk'
+alias -g W='| wc'
 
 # Load environemnt variables
 [[ -f $HOME/.zshrc.d/envrc.zsh ]] && source $HOME/.zshrc.d/envrc.zsh
